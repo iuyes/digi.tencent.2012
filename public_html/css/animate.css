@@ -1,0 +1,37 @@
+/* 
+    Document   : animate
+    Created on : 2012-11-29, 18:25:12
+    Author     : meathill
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+  display: block;
+}
+
+@-webkit-keyframes rotation {
+  from { -webkit-transform:rotate(0deg) translateZ(0); }
+  to { -webkit-transform:rotate(360deg) translateZ(0); }
+}
+@-moz-keyframes rotation {
+  from { -moz-transform:rotate(0deg) translateZ(0); }
+  to { -moz-transform:rotate(360deg) translateZ(0); }
+}
+@-o-keyframes rotation {
+  from { -o-transform:rotate(0deg) translateZ(0); }
+  to { -o-transform:rotate(360deg) translateZ(0); }
+}
+@keyframes rotation {
+  from { transform:rotate(0deg) translateZ(0); }
+  to { transform:rotate(360deg) translateZ(0); }
+}
+.rotation {
+  -webkit-transform:rotate(0deg) translateZ(0);
+  -webkit-transition-duration:0ms;
+
+  -webkit-animation-name:rotation;
+  -webkit-animation-duration:2s;
+  -webkit-animation-iteration-count:infinite;
+  -webkit-animation-timing-function:linear;
+}
