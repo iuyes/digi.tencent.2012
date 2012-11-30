@@ -93,6 +93,9 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+body {
+  background: url(../images/bg.jpg);
+}
 #fav {
   position: absolute;
   bottom: 0;
@@ -104,6 +107,8 @@ textarea {
   border:2px solid #CCC;
   border-radius:6px 6px 0 0;
   box-shadow: 0 1px 4px rgba(0,0,0,.4);
+  
+  background:url(../images/dragbg.jpg);
 }
 #cards {
   padding:30px;
@@ -111,15 +116,43 @@ textarea {
 .card {
   width:120px;
   height: 200px;
-  position: absolute;
+  top:100px;
   left:50%;
   margin-left:-60px;
+  position: absolute;
+}
+.card.rotation {
+  padding-bottom:200px;
 }
 .card-back {
-  background:url(../images/cardback.png) center center no-repeat;
+  background:url(../images/cardback.png) no-repeat;
   background-size: 120px;
 }
-
+.card-ready {
+  transition-property: top;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
+  
+  -webkit-transition-property: top;
+  -webkit-transition-duration: 0.4s;
+  -webkit-transition-timing-function: ease-in-out;
+  top:300px;
+}
+.card-ready:hover {
+  transition-property: top;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
+  
+  -webkit-transition-property: top;
+  -webkit-transition-duration: 0.4s;
+  -webkit-transition-timing-function: ease-in-out;
+  top:290px;
+}
+.jiathis_style {
+  position: absolute;
+  right:0;
+  top:-20px;
+}
 
 
 
