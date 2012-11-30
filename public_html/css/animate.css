@@ -34,3 +34,16 @@ root {
   -webkit-animation-duration:2s;
   -webkit-animation-timing-function:linear;
 }
+
+@-webkit-keyframes zoom-in {
+  from { -webkit-transform: scale(1) translateZ(0);}
+  to { -webkit-transform: scale(1.5) translateZ(0);}
+}
+.zoom-in {
+  -webkit-transform:scale(1.5) translateZ(0);
+  -webkit-transition-duration:0ms;
+
+  -webkit-animation-name:zoom-in;
+  -webkit-animation-duration:0.4s;
+  -webkit-animation-timing-function:ease-in-out;
+}

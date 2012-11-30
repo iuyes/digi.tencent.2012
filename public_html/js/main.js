@@ -20,17 +20,18 @@ $(function () {
     for (var i = 0; i < CARDS_NUM; i++) {
       cards[i]
         .addClass('card-ready')
-        .css('-webkit-transition', 'left-' + (100 + i * 45) + 'px 0.4 ease-in-out ' + i / 20);
+        .delay(i * 50)
+        .animate({
+          top: 300,
+          left: 100 + 45 *i,
+        }, 400, 'easeInOutCubic');
     }
   }
 
   var card = createCard();
   card
     .css('top', '-200px')
-    .animate({top: 100}, 1000, 'easeOutBounce', function () {
-      $(this).attr('style', '');
-      createNextCard.call(this);
-    });
+    .animate({top: 100}, 1000, 'easeOutBounce', createNextCard);
   cards.push(card);
 });
 function createCard(init) {
@@ -40,3 +41,22 @@ function createCard(init) {
 }
 var cards = [],
     CARDS_NUM = 20;
+
+$(document)
+  .on('mouseover', '.card-ready', function (event) {
+    $(this)
+      .animate({
+        top: 280,
+      })
+      .addClass('zoom-in')
+      .data('level', $(this).css('z-index'))
+      .css('z-index', CARDS_NUM + 1);
+  })
+  .on('mouseout', '.card-ready', function (event) {
+    $(this)
+      .animate({
+        top: 300,
+      })
+      .removeClass('zoom-in')
+      .css('z-index', $(this).data('level'));
+  })
