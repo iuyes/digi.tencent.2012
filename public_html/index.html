@@ -15,27 +15,29 @@
       
     </div>
     <div id="fav">
-      <!-- JiaThis Button BEGIN -->
-      <div class="jiathis_style">
-        <a class="jiathis_button_qzone"></a>
-        <a class="jiathis_button_tsina"></a>
-        <a class="jiathis_button_tqq"></a>
-        <a class="jiathis_button_renren"></a>
-        <a class="jiathis_button_kaixin001"></a>
-        <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-        <a class="jiathis_counter_style"></a>
+      <div class="share btn-group btn-group-vertical pull-right">
+        <a href="#" class="btn btn-primary btn-large"><i class="icon-share icon-white"></i> 分享</a>
+        <a href="#" class="btn btn-info btn-large"><i class="icon-comment icon-white"></i> 评论</a>
+        <a href="#" class="btn btn-large">关于</a>
       </div>
-      <script src="http://v3.jiathis.com/code/jia.js?uid=1351350914763779" charset="utf-8"></script>
-      <!-- JiaThis Button END -->
     </div>
     
     <div id="modal-cave">
       <div class="modal fade hide" id="device-detail">
         <div class="modal-header">
           <button class="close" type="button" data-dismiss="modal">&times;</button>
-          <h3></h3>
+          <h3>iPhone 5</h3>
         </div>
         <div class="modal-body">
+          <div class="row-fluid">
+            <div class="span5">
+              <img src="http://2a.zol-img.com.cn/product/98_800x600/582/cedNaeZnzyakk.jpg" />
+            </div>
+            <div class="span7">
+              <p class="lead">苹果iPhone5系列手机，是苹果2012年推出的手机。 售价在5650～6900之间</p>
+              <p>三星刚刚发布了第三代GALAXY S III，尽管有所改变，比如试图将重心放在应用和服务而非硬件上，但仍有相当一部分人在等待着下一代iPhone 5的问世。虽然距离iPhone 5传说中的发布时间还有好几个月，但我们还是可以借助之前苹果的惯例以及先期曝光的情报来猜想一下iPhone 5，推出一篇穿越式iPhone5评测。欢迎各界人士拍砖。   </p>
+            </div>
+          </div>
           
         </div>
         <div class="modal-footer">
@@ -49,8 +51,15 @@
     <script src="//ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
+    <script src="js/tweenlite/TweenLite.min.js"></script>
+    <script src="js/tweenlite/plugins/CSSPlugin.min.js"></script>
+    <script src="js/tweenlite/easing/EasePack.min.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
+    
+    <script type="text/html-template" id="template">
+      <div class="card card-back"><a href="#device-detail" class="btn device-button" data-toggle="modal" role="button">详情</a></div>
+    </script>
 
     <script>
       var _gaq=[['_setAccount','UA-36091301-2'],['_trackPageview']];
