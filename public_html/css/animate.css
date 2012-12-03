@@ -31,7 +31,7 @@ root {
   -webkit-transition-duration:0ms;
 
   -webkit-animation-name:rotation;
-  -webkit-animation-duration:2s;
+  -webkit-animation-duration:1.5s;
   -webkit-animation-timing-function:linear;
 }
 

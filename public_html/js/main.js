@@ -5,7 +5,7 @@ $(function () {
     if (cards.length < CARDS_NUM) {
       var thiscard = createCard();
       cards.push(thiscard);
-      setTimeout($.proxy(createNextCard, thiscard), 100);
+      setTimeout($.proxy(createNextCard, thiscard), 60);
     } else {
       setTimeout(listCards, 2200);
     }
@@ -29,7 +29,7 @@ $(function () {
       TweenLite.to(cards[CARDS_NUM - count - 1][0], 0.4, {
         css: {
           left: left + col * 80,
-          top: 150 + row * 40 + Math.cos((col - 4) * Math.PI / 8) * 30,
+          top: (150 + row * 50) * Math.cos((col - 4) * Math.PI / 16),
           rotation: (4 - col) * 10,
         },
         ease: Cubic.easeInOut,
@@ -50,7 +50,10 @@ $(function () {
   template = $('#template').html();
   var card = createCard();
   card.addClass('start');
-  TweenLite.to(card[0], 1, {css: {top: 100}, ease: Bounce.easeOut, onComplete: $.proxy(createNextCard, card)});
+  TweenLite.to(card[0], 1, {css: {top: 100}, ease: Bounce.easeOut, onComplete: function () {
+    $(this.target).removeClass('start');
+    createNextCard.call(card);
+  }});
   cards.push(card);
 });
 function createCard(init) {
