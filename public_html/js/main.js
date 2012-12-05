@@ -1,4 +1,13 @@
 $(function () {
+  function createBox() {
+    var box = $('<div class="card-box"></div>').appendTo('#cards');
+    return box[0];
+  }
+  function createCard() {
+    var card = $(cardTemplate).appendTo('#cards');
+    card.css('z-index', CARDS_NUM - cards.length);
+    return card;
+  }
   function createNextCard() {
     playRotation($(this));
     
@@ -21,7 +30,7 @@ $(function () {
         row = 0,
         col = 0,
         interval = 0,
-        count = 0
+        count = 0,
         left = ($(window).width() - 760 >> 1) + 60;
     interval = setInterval(function () {
       col = count % COLS;
@@ -43,27 +52,35 @@ $(function () {
       count++;
       if (count == CARDS_NUM) {
         clearInterval(interval);
+        setTimeout(init, 500);
       }
     }, 50);
   }
+  function init() {
+    $('#fav-card').sortable();
+    $('.card-ready').draggable();
+  }
   
-  template = $('#template').html();
-  var card = createCard();
+  var CARDS_NUM = 54,
+      cards = [],
+      cardTemplate = $('#card-template').html(),
+      box = createBox(),
+      card = createCard(),
+      timeline = new TimelineLite();
   card.addClass('start');
-  TweenLite.to(card[0], 1, {css: {top: 100}, ease: Bounce.easeOut, onComplete: function () {
-    $(this.target).removeClass('start');
-    createNextCard.call(card);
-  }});
   cards.push(card);
+  
+  // 分别设定两个动画
+  timeline
+    .to(box, 0.4, {css: {top: -20}, ease: Back.easeOut})
+    .to(card[0], 1, {css: {top: 100}, ease: Bounce.easeOut, onComplete: function () {
+      $(this.target).removeClass('start');
+      createNextCard.call(card);
+    }})
+    .to(box, 0.6, {css: {top: -100}, onComplete: function () {
+      $(this.target).remove();
+    }});
 });
-function createCard(init) {
-  var card = $(template).appendTo('#cards');
-  card.css('z-index', CARDS_NUM - cards.length);
-  return card;
-}
-var cards = [],
-    template = '',
-    CARDS_NUM = 54;
 
 $(document)
   .on('mouseover', '.card-ready', function (event) {

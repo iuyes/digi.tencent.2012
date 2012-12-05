@@ -14,7 +14,13 @@
     <div id="cards">
       
     </div>
+    <div id="garbage">
+      
+    </div>
     <div id="fav">
+      <div id="fav-cards">
+        
+      </div>
       <div class="share btn-group btn-group-vertical pull-right">
         <a href="#" class="btn btn-primary btn-large"><i class="icon-share icon-white"></i> 分享</a>
         <a href="#" class="btn btn-info btn-large"><i class="icon-comment icon-white"></i> 评论</a>
@@ -51,13 +57,14 @@
     <script src="//ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
+    <script src="js/tweenlite/TimelineLite.min.js"></script>
     <script src="js/tweenlite/TweenLite.min.js"></script>
     <script src="js/tweenlite/plugins/CSSPlugin.min.js"></script>
     <script src="js/tweenlite/easing/EasePack.min.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
     
-    <script type="text/html-template" id="template">
+    <script type="text/html-template" id="card-template">
       <div class="card card-back">
         <a href="#device-detail" class="device-button" data-toggle="modal" role="button">
           <img src="images/card.jpg" />

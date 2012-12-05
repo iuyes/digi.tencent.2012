@@ -129,8 +129,38 @@ body {
 #fav .share .btn {
   width: auto;
 }
+
+#garbage {
+  position: absolute;
+  right: 0;
+  top:50%;
+  margin-top:-50px;
+  
+  width:100px;
+  height:100px;
+  
+  background:#ff0;
+  border:2px solid #CCC;
+  border-right:none;
+  border-radius:6px 0 0 6px;
+}
+
 #cards {
   padding:30px;
+}
+.card-box {
+  width:130px;
+  height:100px;
+  
+  position:absolute;
+  top:-80px;
+  left:50%;
+  margin-left:-65px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .4);
+  z-index: 100;
+  
+  background:#b3d4fc;
+  border:2px solid #CCC;
 }
 .card {
   width:120px;
@@ -165,11 +195,6 @@ body {
 }
 .card-ready:hover {
   box-shadow: 0 0 4px 1px rgba(255, 255, 255, .6);
-}
-.jiathis_style {
-  position: absolute;
-  right:0;
-  top:-20px;
 }
 
 
