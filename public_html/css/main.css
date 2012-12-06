@@ -99,6 +99,9 @@ body {
 .hide {
   display:none;
 }
+ul, li {
+  margin:0;
+}
 
 #fav {
   position: absolute;
@@ -110,11 +113,17 @@ body {
   height:160px;
   padding:10px;
   border:2px solid #CCC;
+  border-bottom: none;
   border-radius:6px 6px 0 0;
   
   box-shadow: 0 1px 4px rgba(0,0,0,.4);
   
   background:url(../images/dragbg.jpg);
+}
+#fav-cards {
+  width:700px;
+  height:160px;
+  float:left;
 }
 #fav .card {
   position:static;
@@ -163,6 +172,7 @@ body {
   border:2px solid #CCC;
 }
 .card {
+  list-style: none;
   width:120px;
   height: 200px;
   top:100px;
@@ -194,7 +204,12 @@ body {
   
 }
 .card-ready:hover {
-  box-shadow: 0 0 4px 1px rgba(255, 255, 255, .6);
+  box-shadow: 0 0 8px 2px rgba(255, 255, 255, .6);
+  -webkit-transform: scale(1.1) translateZ(0);
+  -webkit-animation-name:zoom-in;
+  -webkit-animation-duration:0.4s;
+  -webkit-animation-timing-function:ease-in-out;
+  z-index: 55;
 }
 
 

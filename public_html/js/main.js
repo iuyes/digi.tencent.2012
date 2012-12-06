@@ -4,8 +4,7 @@ $(function () {
     return box[0];
   }
   function createCard() {
-    var card = $(cardTemplate).appendTo('#cards');
-    card.css('z-index', CARDS_NUM - cards.length);
+    var card = $(cardTemplate).prependTo('#cards');
     return card;
   }
   function createNextCard() {
@@ -57,12 +56,20 @@ $(function () {
     }, 50);
   }
   function init() {
-    $('#fav-card').sortable();
-    $('.card-ready').draggable();
+    $('#fav-card').sortable({
+      receive: function (event, ui) {
+        console.log('xxx');
+        ui.item.removeClass('card-ready');
+      },
+    });
+    $('.card-ready').draggable({
+      connectToSortable: '#fav-card',
+      revert: 'false',
+      
+    });
   }
   
-  var CARDS_NUM = 54,
-      cards = [],
+  var cards = [],
       cardTemplate = $('#card-template').html(),
       box = createBox(),
       card = createCard(),
@@ -81,30 +88,8 @@ $(function () {
       $(this.target).remove();
     }});
 });
-
+var CARDS_NUM = 54;
 $(document)
-  .on('mouseover', '.card-ready', function (event) {
-    TweenLite.to(this, 0.5, {css: {
-      scale: 1.2,
-    }, ease: Cubic.easeInOut});
-    if ($(this).css('z-index') != CARDS_NUM) {
-      $(this).data('z-index', $(this).css('z-index'))
-    }
-    $(this)
-      .css('z-index', CARDS_NUM);
-  })
-  .on('mouseout', '.card-ready', function (event) {
-    TweenLite.to(this, 0.3, {
-      css: {
-        scale: 1,
-      },
-      ease: Cubic.easeOut,
-      onComplete: function () {
-        $(this.target)
-          .css('z-index', $(this.target).data('z-index'));
-      }
-    });
-  })
   .on('click', '.device-button', function (event) {
     $('#device-detail').data('card', $(this).closest('.card'));
   })
