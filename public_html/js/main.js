@@ -52,14 +52,17 @@ $(function () {
     });
   }
   function init() {
-    $('#fav-card').sortable({
+    $('#fav-cards').sortable({
       receive: function (event, ui) {
         ui.item.removeClass('card-ready');
       },
     });
     $('.card-ready').draggable({
-      connectToSortable: '#fav-card',
-      revert: 'false',
+      connectToSortable: '#fav-cards',
+      cursor: 'crosshair',
+      start: function (event, ui) {
+        $('#cards').append(ui.helper);
+      },
     });
     $(document)
       .on('click', '#tidy-button', function (event) {
@@ -70,7 +73,7 @@ $(function () {
         tidyNextCard(cards[0]);
       });
     $('#fama, #tidy-button').show();
-    TweenLite.to(box, 0.5, {css: {top: -120, left: -30}});
+    TweenLite.to(box, 0.5, {css: {top: -120, left: 60}});
     TweenLite.to($('#title')[0], 0.5, {css: {top: 0}, ease: Cubic.easeOut});
   }
   
@@ -78,12 +81,12 @@ $(function () {
   var cards = [],
       WIDTH = $(window).width(),
       HEIGHT = $(window).height(),
-      viewport = createViewport(WIDTH, HEIGHT);
+      viewport = createViewport(WIDTH, HEIGHT - 180);
       cardTemplate = $('#card-template').html(),
       box = createBox(viewport.cX);
   
-  // 分别设定两个动画
-  TweenLite.to(box, 0.5, {css: {top: -60, left: 60}, ease: Back.easeOut, onComplete: createNextCard, delay: 0.5});
+  $('#cards').height(viewport.height);
+  TweenLite.to(box, 0.5, {css: {top: -60, left: 120}, ease: Back.easeOut, onComplete: createNextCard, delay: 0.5});
 });
 var CARDS_NUM = 54;
 $(document)
@@ -99,15 +102,14 @@ $(document)
   });
 function createViewport(w, h) {
   var viewport = {
-    width: 0,
+    width: 860,
     height: 0,
     x: 0,
     y: 0,
     cX: 0,
     cY: 0,
   };
-  viewport.width = w < 1280 ? (w > 960 ? w : 960) : 1280;
-  viewport.height = h < 840 ? (h > 640 ? h : 640) : 840;
+  viewport.height = h < 900 ? (h > 600 ? h : 600) : 900;
   viewport.x = w - viewport.width >> 1;
   viewport.y = h - viewport.height >> 1;
   viewport.cX = w >> 1;

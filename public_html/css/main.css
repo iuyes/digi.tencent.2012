@@ -24,6 +24,10 @@ body {
   height:100%;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
  * These selection declarations have to be separate.
@@ -107,23 +111,18 @@ ul, li {
   position: fixed;
   bottom: 0;
   left:50%;
-  margin-left: -400px;
+  margin-left: -490px;
   
-  width: 800px;
-  height:160px;
-  padding:10px;
-  border:2px solid #CCC;
-  border-bottom: none;
-  border-radius:6px 6px 0 0;
+  width: 980px;
+  height:175px;
   
-  box-shadow: 0 1px 4px rgba(0,0,0,.4);
-  
-  background:url(../images/dragbg.jpg);
+  background:url(../images/bg2.jpg);
 }
 #fav-cards {
-  width:700px;
-  height:160px;
+  width:820px;
+  height:138px;
   float:left;
+  padding:20px 0 0 30px;
 }
 #fav .card {
   position:static;
@@ -133,37 +132,45 @@ ul, li {
   height: 160px;
 }
 #fav .share {
-  
+  width:67px;
+  padding: 21px 36px 0 0;
 }
-#fav .share .btn {
-  width: auto;
+#fav .share .button {
+  width:67px;
+  font:bold 16px/39px Microsoft Yahei, Simhei;
+  background:url(../images/btn-bg1.png);
+  margin:0 0 8px;
+  text-align: center;
+  display:block;
+  color:#FFF;
+  text-shadow: 0 0 8px #316522, 0 0 1px #4a9738;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .5);
+}
+#fav .share .comment-button {
+  background-position-y: -39px;
+}
+#fav .share .about-button {
+  background-position-y: -78px;
+  margin:0;
 }
 
 #garbage {
   position: absolute;
   right: 0;
-  top:-50px;
-  
-  width:100px;
-  height:100px;
-  
-  background:#ff0;
-  border:2px solid #CCC;
-  border-right:none;
-  border-radius:6px 0 0 6px;
+  top:-82px;
 }
 
 #fama {
   position: absolute;
   top:100px;
-  right:20px;
+  right:10px;
   display: none;
 }
 
 #tidy-button {
   position:absolute;
-  top:100px;
-  left:20px;
+  top:180px;
+  left:60px;
   display:none;
 }
 #tidy-button img {
@@ -180,10 +187,14 @@ ul, li {
   box-shadow: 1px 1px 2px rgba(0, 0, 0, .4);
 }
 #tidy-button .button:hover {
-  text-decoration: none;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, .5);
 }
-
+#logo {
+  position: absolute;
+  top:125px;
+  left:50%;
+  margin-left:-228px;
+}
 #title {
   position:absolute;
   top: -120px;
@@ -193,11 +204,11 @@ ul, li {
 }
 
 #cards {
-  padding:30px 0;
-  min-width:960px;
-  max-width: 1280px;
+  width:980px;
+  height: 800px;
   margin:0 auto;
   position:relative;
+  background:url(../images/tencent.png) no-repeat center 125px, url(../images/bg1.jpg) no-repeat center bottom;
 }
 .card-box {
   width:145px;
@@ -207,7 +218,7 @@ ul, li {
   
   position:absolute;
   top:-120px;
-  left:-30px;
+  left:40px;
   z-index: 100;
   
   background:url(../images/box.png) no-repeat;
@@ -221,7 +232,7 @@ ul, li {
   -webkit-transform: rotate(-20deg) translateZ(0);
   
   top:-25px;
-  left:80px;
+  left:170px;
   position: absolute;
   
   background:#FFF;
