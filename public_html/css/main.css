@@ -104,7 +104,7 @@ ul, li {
 }
 
 #fav {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left:50%;
   margin-left: -400px;
@@ -142,8 +142,7 @@ ul, li {
 #garbage {
   position: absolute;
   right: 0;
-  top:50%;
-  margin-top:-50px;
+  top:-50px;
   
   width:100px;
   height:100px;
@@ -152,6 +151,42 @@ ul, li {
   border:2px solid #CCC;
   border-right:none;
   border-radius:6px 0 0 6px;
+}
+
+#fama {
+  position: absolute;
+  top:100px;
+  right:20px;
+  display: none;
+}
+
+#tidy-button {
+  position:absolute;
+  top:100px;
+  left:20px;
+  display:none;
+}
+#tidy-button .button {
+  width:61px;
+  text-align: center;
+  color:#FFF;
+  display: block;
+  font: 14px/23px Simsun;
+  
+  background: url(../images/btn-bg.png);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, .4);
+}
+#tidy-button .button:hover {
+  text-decoration: none;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, .5);
+}
+
+#title {
+  position:absolute;
+  top: -120px;
+  left: 50%;
+  margin-left:-250px;
+  padding-left:11px;
 }
 
 #cards {
@@ -200,8 +235,8 @@ ul, li {
   padding-bottom:200px;
 }
 .card-back {
-  background:url(../images/cardback.png) no-repeat;
-  background-size: 120px;
+  background:url(../images/card-back.jpg) no-repeat;
+  background-size: 100px 138px;
   box-shadow: none;
 }
 .card-back * {

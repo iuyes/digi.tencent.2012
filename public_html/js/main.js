@@ -4,7 +4,10 @@ $(function () {
     return box[0];
   }
   function createCard() {
-    var card = $(cardTemplate).appendTo('#cards');
+    var container = $('#cards'),
+        index = container.children().length - 1,
+        card = $(cardTemplate).appendTo(container);
+    card.find('img').attr('src', 'images/cards/card' + index + '.jpg');
     return card;
   }
   function createNextCard() {
@@ -29,6 +32,25 @@ $(function () {
       init();
     }
   }
+  function tidyNextCard(card) {
+    var index = cards.indexOf(this);
+    if ($.contains($('#fav')[0], this)) {
+      return;
+    }
+    if (index == CARDS_NUM) {
+      $('#tidy-button').removeClass('disabled');
+      return;
+    }
+    var obj = {
+      left: index * viewport.width / 12,
+      top: (index / 12 >> 0) * 60 + 300,
+    };
+    TweenLite.to(this, 0.5, {
+      css: obj,
+      onComplete: tidyNextCard,
+      onCompleteParam: cards[index + 1],
+    });
+  }
   function init() {
     $('#fav-card').sortable({
       receive: function (event, ui) {
@@ -39,7 +61,17 @@ $(function () {
       connectToSortable: '#fav-card',
       revert: 'false',
     });
+    $(document)
+      .on('click', '#tidy-button', function (event) {
+        if ($(this).hasClass('disabled')) {
+          return;
+        }
+        $(this).addClass('disabled');
+        tidyNextCard(cards[0]);
+      });
+    $('#fama, #tidy-button').show();
     TweenLite.to(box, 0.5, {css: {top: -120, left: -30}});
+    TweenLite.to($('#title')[0], 0.5, {css: {top: 0}, ease: Cubic.easeOut});
   }
   
   // 动画由此开始
