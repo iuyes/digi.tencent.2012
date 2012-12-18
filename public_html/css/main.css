@@ -166,6 +166,9 @@ ul, li {
   left:20px;
   display:none;
 }
+#tidy-button img {
+  margin:0 2px 4px;
+}
 #tidy-button .button {
   width:61px;
   text-align: center;
