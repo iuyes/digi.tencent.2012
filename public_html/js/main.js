@@ -18,7 +18,7 @@ $(function () {
     TweenLite.to(thiscard, 0.4, {
       css: {
         left: viewport.width * Math.cos(angle) * radix + viewport.width / 2,
-        top: viewport.height * Math.sin(angle) * radix + viewport.cY,
+        top: viewport.height * Math.sin(angle) * radix + viewport.cY + 150,
         rotation: Math.random() * 90 - 45,
       },
       onStart: function () {
@@ -29,12 +29,12 @@ $(function () {
     if (cards.length < CARDS_NUM) {
       setTimeout(createNextCard, 33);
     } else {
-      init();
+      setTimeout(init, 500);
     }
   }
   function tidyNextCard(card) {
-    var index = cards.indexOf(this);
-    if ($.contains($('#fav')[0], this)) {
+    var index = cards.indexOf(card);
+    if ($.contains($('#fav-cards')[0], card)) {
       return;
     }
     if (index == CARDS_NUM) {
@@ -42,29 +42,60 @@ $(function () {
       return;
     }
     var obj = {
-      left: index * viewport.width / 12,
-      top: (index / 12 >> 0) * 60 + 300,
+      rotation: 0,
     };
-    TweenLite.to(this, 0.5, {
-      css: obj,
-      onComplete: tidyNextCard,
-      onCompleteParam: cards[index + 1],
+    if (index < 2) {
+      obj.scale = 1.3;
+      obj.left = 364 + index * 158;
+      obj.top = 115;
+    } else if ((index - 2) % 13 < 2) {
+      obj.left = 72 + ((index - 2) % 13 + (index / 13 >> 0) * 2) * 102 + (index / 13 > 2 ? 28 : 0);
+      obj.top = 278;
+    } else {
+      obj.left = (index - 4 - ((index - 2) / 13 >> 0) * 2) % 11 * 74 + 72;
+      obj.top = ((index - 4 - ((index - 2) / 13 >> 0) * 2) / 11 >> 0) * 60 + 420;
+    }
+    var animation = {
+      css: obj
+    };
+    if (index < CARDS_NUM - 1) {
+      animation.onComplete = tidyNextCard;
+      animation.onCompleteParams = [cards[index + 1]];
+    }
+    TweenLite.to(card, 0.2, animation);
+  }
+  function addCardToFav(card) {
+    card
+      .removeClass('card-ready')
+      .appendTo($('#fav-cards'));
+    TweenLite.to(card[0], 0.5, {
+      css: {
+        scale: 1,
+        rotation: 0,
+      }
     });
   }
   function init() {
-    $('#fav-cards').sortable({
-      receive: function (event, ui) {
-        ui.item.removeClass('card-ready');
-      },
-    });
     $('.card-ready').draggable({
-      connectToSortable: '#fav-cards',
       cursor: 'crosshair',
+      snap: '#fav-cards',
+      snapMode: 'inter',
       start: function (event, ui) {
         $('#cards').append(ui.helper);
       },
     });
     $(document)
+      .on('click', '.device-button', function (event) {
+        $('#device-detail')
+          .data('card', $(this).closest('.card'))
+          .find('.modal-body').html($(this).children().first().clone());
+      })
+      .on('click', 'button[type=submit]', function (event) {
+        var modal = $(this).closest('.modal'),
+            card = modal.data('card');
+        addCardToFav(card);
+        modal.modal('hide');
+      })
       .on('click', '#tidy-button', function (event) {
         if ($(this).hasClass('disabled')) {
           return;
@@ -74,7 +105,7 @@ $(function () {
       });
     $('#fama, #tidy-button').show();
     TweenLite.to(box, 0.5, {css: {top: -120, left: 60}});
-    TweenLite.to($('#title')[0], 0.5, {css: {top: 0}, ease: Cubic.easeOut});
+    TweenLite.to($('#title')[0], 0.5, {css: {top: -12}, ease: Cubic.easeOut});
   }
   
   // 动画由此开始
@@ -85,21 +116,10 @@ $(function () {
       cardTemplate = $('#card-template').html(),
       box = createBox(viewport.cX);
   
-  $('#cards').height(viewport.height);
+  $('#cards').height(viewport.height + 90);
   TweenLite.to(box, 0.5, {css: {top: -60, left: 120}, ease: Back.easeOut, onComplete: createNextCard, delay: 0.5});
 });
 var CARDS_NUM = 54;
-$(document)
-  .on('click', '.device-button', function (event) {
-    $('#device-detail').data('card', $(this).closest('.card'));
-  })
-  .on('click', 'button[type=submit]', function (event) {
-    var modal = $(this).closest('.modal'),
-        card = modal.data('card');
-    card.removeClass('card-ready').attr('style', '');
-    $('#fav').append(card);
-    modal.modal('hide');
-  });
 function createViewport(w, h) {
   var viewport = {
     width: 860,
@@ -109,10 +129,11 @@ function createViewport(w, h) {
     cX: 0,
     cY: 0,
   };
-  viewport.height = h < 900 ? (h > 600 ? h : 600) : 900;
+  viewport.height = h < 750 ? (h > 500 ? h : 500) : 750;
   viewport.x = w - viewport.width >> 1;
   viewport.y = h - viewport.height >> 1;
   viewport.cX = w >> 1;
-  viewport.cY = h - 200 >> 1;
+  viewport.cY = h - 320 >> 1;
+  console.log(viewport.height, viewport.cY);
   return viewport;
 }

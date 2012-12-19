@@ -124,12 +124,13 @@ ul, li {
   float:left;
   padding:20px 0 0 30px;
 }
-#fav .card {
+#fav-cards .card {
   position:static;
   float:left;
-  margin:0;
-  width:96px;
-  height: 160px;
+  margin-left:-30px;
+}
+#fav-cards .card:first-child {
+  margin-left: 0;
 }
 #fav .share {
   width:67px;
@@ -197,7 +198,7 @@ ul, li {
 }
 #title {
   position:absolute;
-  top: -120px;
+  top: -135px;
   left: 50%;
   margin-left:-250px;
   padding-left:11px;
@@ -226,8 +227,8 @@ ul, li {
 .card {
   list-style: none;
   
-  width:100px;
-  height: 138px;
+  width:95px;
+  height: 133px;
   transform: rotate(-20deg) translateZ(0);
   -webkit-transform: rotate(-20deg) translateZ(0);
   
@@ -236,7 +237,8 @@ ul, li {
   position: absolute;
   
   background:#FFF;
-  border-radius: 3px;
+  border-radius: 4px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.33);
 }
 .card img {
   width:100%;
@@ -264,8 +266,13 @@ ul, li {
   z-index: 55;
 }
 
-
-
+#device-detail {
+  width:407px;
+  margin:-328px 0 0 -204px;
+}
+#device-detail .modal-body {
+  max-height: 555px
+}
 
 
 
