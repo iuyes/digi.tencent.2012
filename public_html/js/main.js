@@ -68,15 +68,60 @@ $(function () {
     $('#tidy-button a').removeClass('disabled');
   }
   function addCardToFav(card) {
+    if (favcards.children().length == 8) {
+      $('#fav-cards').popover('show');
+      setTimout(function () {
+        $('#fav-cards').popover('hide');
+      }, 3000);
+    }
     card
       .removeClass('card-ready')
-      .appendTo($('#fav-cards'));
+      .appendTo($('#fav-cards'))
+      .css({
+        left: (favcards.children().length - 1) * 70,
+        top: 24,
+      });;
     TweenLite.to(card[0], 0.5, {
       css: {
         scale: 1,
         rotation: 0,
       }
     });
+    favcards.removeClass('active');
+    for (var i =0; i < CARDS_NUM; i++) {
+      if (card.is(cards[i])) {
+        money += PRICES[i];
+        break;
+      }
+    }
+    displayNumbers(money);
+  }
+  function removeCardFromFav(card) {
+    var offset = favcards.offset();
+    card.css({
+      left: '+=30',
+      top: '+=' + offset.top,
+    });
+    $('#cards').append(card);
+    for (var i =0; i < CARDS_NUM; i++) {
+      if (card.is(cards[i])) {
+        money -= PRICES[i];
+        break;
+      }
+    }
+    displayNumbers(money);
+  }
+  function displayNumbers(number) {
+    var ul = $('#counter ul');
+    ul.empty();
+    if (number == 0) {
+      ul.html('<li class="num0"></li>');
+      return;
+    }
+    while (number > 0) {
+      $('<li class="num' + number % 10 +'"></li>').prependTo(ul);
+      number = number / 10;
+    }
   }
   function init() {
     $('.card-ready').draggable({
@@ -98,6 +143,7 @@ $(function () {
       },
       stop: function (event, ui) {
         ui.helper.removeClass('top-card');
+        
         if (garbage.hasClass('active')) {
           ui.helper
             .draggable('destroy')
@@ -107,30 +153,13 @@ $(function () {
         }
       
         if (favcards.hasClass('active')) {
-          ui.helper
-            .appendTo(favcards)
-            .css({
-              left: (favcards.children().length - 1) * 70,
-              top: 24,
-            });
-          TweenLite.to(ui.helper[0], 0.3, {
-            css: {
-              scale: 1,
-              rotation: 0,
-            },
-          });
-          favcards.removeClass('active');
+          addCardToFav(ui.helper);
           return;
         }
       
         if (ui.helper.parent().is(favcards)) {
-          var offset = favcards.offset();
-          ui.helper.css({
-            left: '+=30',
-            top: '+=' + offset.top,
-          });
+          removeCardFromFav(ui.helper);
         }
-        $('#cards').append(ui.helper);
       }
     });
     $(document)
@@ -159,6 +188,7 @@ $(function () {
   
   // 动画由此开始
   var cards = [],
+      money = 0,
       WIDTH = $(window).width(),
       HEIGHT = $(window).height(),
       viewport = createViewport(WIDTH, HEIGHT - 180);
@@ -167,10 +197,12 @@ $(function () {
       garbage = $('#garbage'),
       favcards = $('#fav-cards');
   
-  $('#cards').height(viewport.height + 200);
+  $('#cards').height(viewport.height);
   TweenLite.to(box, 0.5, {css: {top: -60, left: 120}, ease: Back.easeOut, onComplete: createNextCard, delay: 0.5});
+  displayNumbers(money);
 });
-var CARDS_NUM = 54;
+var CARDS_NUM = 54,
+    PRICES = ["5288", "248", "16488", "13999", "7999", "7388", "9699", "9999", "6999", "28999", "10988", "10999", "9688", "7999", "129", "750", "18499", "169999", "17499", "13199", "8000", "2999", "228", "2100", "3480", "890", "699", "1150", "4599", "3599", "4899", "4799", "3999", "1880", "3500", "2998", "2499", "1999", "2499", "399", "199", "2498", "3759", "3688", "23499", "1300", "9300", "4488", "5499", "3328", "15399", "1300", "3299", "33566"];
 function createViewport(w, h) {
   var viewport = {
     width: 860,

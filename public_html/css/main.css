@@ -162,6 +162,68 @@ ul, li {
 #fav-cards .card.ui-draggable-dragging {
   position: absolute;
 }
+#counter {
+  position: absolute;
+  top:-20px;
+  right:200px;
+}
+#counter div,
+#counter ul,
+#counter li {
+  float:left;
+}
+#counter .l {
+  width:160px;
+  height:22px;
+  background:url(../images/num.png);
+}
+#counter .r {
+  width: 24px;
+  height:22px;
+  background:url(../images/num.png) right;
+}
+.num0,
+.num1,
+.num2,
+.num3,
+.num4,
+.num5,
+.num6,
+.num7,
+.num8,
+.num9 {
+  width:18px;
+  height:25px;
+  margin-right:1px;
+  background:url(../images/nums.png);
+}
+.num1 {
+  background-position-x: -20px;
+}
+.num2 {
+  background-position-x: -40px;
+}
+.num3 {
+  background-position-x: -60px;
+}
+.num4 {
+  background-position-x: -80px;
+}
+.num5 {
+  background-position-x: -100px;
+}
+.num6 {
+  background-position-x: -120px;
+}
+.num7 {
+  background-position-x: -140px;
+}
+.num8 {
+  background-position-x: -160px;
+}
+.num9 {
+  background-position-x: -180px;
+}
 
 #garbage {
   position: absolute;
