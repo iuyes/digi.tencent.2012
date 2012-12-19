@@ -106,6 +106,9 @@ body {
 ul, li {
   margin:0;
 }
+h1, h2, h3 {
+  font-family: Helvetica, Microsoft Yahei, Simhei;
+}
 
 #fav {
   position: fixed;
@@ -133,6 +136,9 @@ ul, li {
   text-shadow: 0 0 8px #316522, 0 0 1px #4a9738;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .5);
 }
+#fav .share .button:hover {
+  box-shadow: 0 0 4px 1px rgba(255, 255, 255, .5);
+}
 #fav .share .comment-button {
   background-position-y: -39px;
 }
@@ -144,7 +150,7 @@ ul, li {
   width:820px;
   height:138px;
   float:left;
-  margin:24px 0 0 30px;
+  margin:23px 0 0 30px;
   position: relative;
 }
 #fav-cards.active {
@@ -164,23 +170,27 @@ ul, li {
 }
 #counter {
   position: absolute;
-  top:-20px;
-  right:200px;
+  top:-24px;
+  right:130px;
 }
 #counter div,
 #counter ul,
 #counter li {
   float:left;
 }
-#counter .l {
-  width:160px;
+#counter .l,
+#counter .r {
+  margin:4px 0 0;
   height:22px;
   background:url(../images/num.png);
 }
+#counter .l {
+  width:160px;
+  margin-right:6px;
+}
 #counter .r {
   width: 24px;
-  height:22px;
-  background:url(../images/num.png) right;
+  background-position-x: right;
 }
 .num0,
 .num1,
@@ -198,31 +208,36 @@ ul, li {
   background:url(../images/nums.png);
 }
 .num1 {
-  background-position-x: -20px;
+  width:17px;
+  background-position-x: -17px;
 }
 .num2 {
-  background-position-x: -40px;
+  background-position-x: -35px;
 }
 .num3 {
-  background-position-x: -60px;
+  width:19px;
+  background-position-x: -53px;
 }
 .num4 {
-  background-position-x: -80px;
+  background-position-x: -71px;
 }
 .num5 {
-  background-position-x: -100px;
+  background-position-x: -89px;
 }
 .num6 {
-  background-position-x: -120px;
+  width:19px;
+  background-position-x: -106px;
 }
 .num7 {
-  background-position-x: -140px;
+  width:19px;
+  background-position-x: -124px;
 }
 .num8 {
-  background-position-x: -160px;
+  width:19px;
+  background-position-x: -142px;
 }
 .num9 {
-  background-position-x: -180px;
+  background-position-x: -160px;
 }
 
 #garbage {
@@ -238,44 +253,50 @@ ul, li {
 
 #fama {
   position: absolute;
-  top:100px;
-  right:10px;
+  top:0;
+  left:50%;
+  margin-left:205px;
   display: none;
 }
 
 #tidy-button {
   position:absolute;
+  z-index: 60;
   top:180px;
-  left:60px;
+  right:50%;
+  margin-right:320px;
+  
+  width:77px;
+  height:29px;
+  padding:91px 22px 8px 25px;
+  
+  background:url(../images/tidy.png);
   display:none;
 }
-#tidy-button img {
-  margin:0 2px 4px;
-}
 #tidy-button .button {
-  width:61px;
+  width:77px;
   text-align: center;
   color:#FFF;
   display: block;
-  font: 14px/23px Simsun;
+  font:bold 16px/29px Microsoft Yahei, Simhei;
   
   background: url(../images/btn-bg.png);
   box-shadow: 1px 1px 2px rgba(0, 0, 0, .4);
 }
 #tidy-button .button:hover {
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, .5);
+  box-shadow: 0 0 4px 1px rgba(255, 255, 255, .5);
 }
 #logo {
   position: absolute;
-  top:125px;
+  top:265px;
   left:50%;
   margin-left:-228px;
 }
 #title {
   position:absolute;
-  top: -135px;
+  top: -205px;
   left: 50%;
-  margin-left:-250px;
+  margin-left:-265px;
   padding-left:11px;
 }
 

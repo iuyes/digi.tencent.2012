@@ -12,7 +12,6 @@
         $('#file-uploader').on('change', function (event) {
           var reader = new FileReader();
           reader.onloadend = function () {
-            console.log(this.result);
             toJSON(this.result);
           }
           reader.readAsText(this.files[0], 'GB2312');
@@ -31,18 +30,36 @@
           }
           var cols = rows[i].split(',');
           if (i == 0) {
-            result.push(cols[2]);
-            result.push(cols[5]);
+            result.push({
+              name: cols[1],
+              price: Number(cols[2]),
+            });
+            result.push({
+              name: cols[4],
+              price: Number(cols[5]),
+            });
           } else if (i < 14) {
-            spade.push(cols[2]);
-            heart.push(cols[5]);
+            spade.push({
+              name: cols[1],
+              price: Number(cols[2]),
+            });
+            heart.push({
+              name: cols[4],
+              price: Number(cols[5]),
+            });
           } else {
-            club.push(cols[2]);
-            diamond.push(cols[5]);
+            club.push({
+              name: cols[1],
+              price: Number(cols[2]),
+            });
+            diamond.push({
+              name: cols[4],
+              price: Number(cols[5]),
+            });
           }
         }
         result = result.concat(heart, diamond, spade, club);
-        console.log(result);
+        console.log(JSON.stringify(result));
       }
     </script>
   </head>
