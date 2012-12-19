@@ -118,20 +118,6 @@ ul, li {
   
   background:url(../images/bg2.jpg);
 }
-#fav-cards {
-  width:820px;
-  height:138px;
-  float:left;
-  padding:20px 0 0 30px;
-}
-#fav-cards .card {
-  position:static;
-  float:left;
-  margin-left:-30px;
-}
-#fav-cards .card:first-child {
-  margin-left: 0;
-}
 #fav .share {
   width:67px;
   padding: 21px 36px 0 0;
@@ -154,11 +140,38 @@ ul, li {
   background-position-y: -78px;
   margin:0;
 }
+#fav-cards {
+  width:820px;
+  height:138px;
+  float:left;
+  margin:24px 0 0 30px;
+  position: relative;
+}
+#fav-cards.active {
+  background:rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+}
+#fav-cards .card {
+  position:static;
+  float:left;
+  margin-left:-30px;
+}
+#fav-cards .card:first-child {
+  margin-left: 0;
+}
+#fav-cards .card.ui-draggable-dragging {
+  position: absolute;
+}
 
 #garbage {
   position: absolute;
   right: 0;
   top:-82px;
+}
+#garbage.active {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  box-shadow:0 0 4px red;
 }
 
 #fama {
@@ -265,6 +278,9 @@ ul, li {
   box-shadow: 0 0 8px 2px rgba(255, 255, 255, .6);
   z-index: 55;
 }
+.top-card {
+  z-index:999;
+}
 
 #device-detail {
   width:407px;
@@ -273,9 +289,10 @@ ul, li {
 #device-detail .modal-body {
   max-height: 555px
 }
-
-
-
+#about .small {
+  font-size:12px;
+  line-height:18px;
+}
 
 
 

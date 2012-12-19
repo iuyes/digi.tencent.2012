@@ -23,8 +23,8 @@
       </div>
       <div class="share pull-right">
         <a href="#" class="button">分享</a>
-        <a href="#" class="button comment-button">评论</a>
-        <a href="#" class="button about-button">关于</a>
+        <a href="#comment" class="button comment-button" data-toggle="modal" role="button">评论</a>
+        <a href="#about" class="button about-button" data-toggle="modal" role="button">关于</a>
       </div>
     </div>
     
@@ -53,6 +53,57 @@
         <div class="modal-footer">
           <button type="submit" class="btn btn-success"><i class="icon-white icon-heart"></i> 我喜欢，收藏了</button>
           <button type="button" class="btn" data-dismiss="modal">关闭</button>
+        </div>
+      </div>
+      <div class="modal fade hide" id="comment">
+        <div class="modal-header">
+          <button class="close" type="button" data-dismiss="modal">&times;</button>
+          <h3>我有话要说</h3>
+        </div>
+        <div class="modal-body">
+          <script>
+            comment_para_site = "digi";
+            comment_para_id = 33629848;
+            comment_para_is_group = 1;
+            comment_para_sum = 10;
+            comment_para_mode = "all";
+            comment_para_show = 1;
+            comment_para_height = 0;
+            comment_para_style = "";
+            comment_para_submit_pos = 0;
+            comment_para_count_id = "";
+          </script>
+          <!--<script src="http://pinglun.qq.com/js/comment_iframe.js"></script>-->
+        </div>
+      </div>
+      <div class="modal fade hide" id="about">
+        <div class="modal-header">
+          <button class="close" type="button" data-dismiss="modal">&times;</button>
+          <h3>制作团队</h3>
+        </div>
+        <div class="modal-body">
+          <h3>策划</h3>
+          <p>钱老板</p>
+          <h3>设计/制作</h3>
+          <p>蛋东 / 肉山</p>
+          <hr />
+          <p align="center" class="small"><a href="http://www.tencent.com/" rel="nofollow">关于腾讯 </a> | <a href="http://www.tencent.com/index_e.shtml" rel="nofollow">About Tencent</a> | <a href="http://www.qq.com/contract.shtml" rel="nofollow">服务协议</a> | <a href="http://open.qq.com/" rel="nofollow">开放平台</a> | <a href="http://www.tencentmind.com/" rel="nofollow">广告服务</a> | <a href="http://hr.tencent.com/" rel="nofollow">腾讯招聘</a> | <a href="http://gongyi.qq.com/" rel="nofollow">腾讯公益</a> | <a href="http://service.qq.com/" rel="nofollow">客服中心</a> | <a href="http://www.qq.com/map/" rel="nofollow">网站导航</a></p>
+          <p align="center" class="mute small">Copyright &copy; 1998 - 2012 Tencent. All Rights Reserved</p>
+          <p align="center" class="mute small">腾讯公司 <a href="http://www.tencent.com/zh-cn/le/copyrightstatement.shtml" target="_blank" rel="nofollow">版权所有</a></p>
+        </div>
+        <div class="modal-footer">
+          <div id="iShare" class="iShare iShareP3" align="center">
+            <span class="Qs_txt">分享到：</span>
+            <a class="Qs_weibo" title="腾讯微博"></a>
+            <a class="Qs_qzone" title="QQ空间"></a>
+            <a class="Qs_sina" title="新浪微博"></a>
+            <a class="Qs_pengyou" title="朋友网"></a>
+            <a class="Qs_qmail" title="QQ邮箱"></a>
+            <a class="Qs_kaixin" title="开心网"></a>
+            <a class="Qs_renren" title="人人网"></a>
+          </div>
+          <script src="http://joke.qq.com/qshare/iShare.js"></script>
+          <script>(function(){shareQQ({WB:false});})();</script>
         </div>
       </div>
     </div>
