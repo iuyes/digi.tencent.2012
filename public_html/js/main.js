@@ -201,6 +201,17 @@ $(function () {
         }
         $(this).addClass('disabled');
         tidyNextCard(cards[0]);
+      })
+      .on('click', '.share-button', function (event) {
+        if (favcards.children().length == 12) {
+          var select = '';
+          favcards.children().each(function (i) {
+            select += $(this).find('img').attr('src').match(/card(\d{1,2})\.jpg/)[1] + '_';
+          });
+          this.href = this.href.substr(0, this.href.indexOf('?')) + '?select=' + select.slice(0, -1);
+        } else {
+          alert("您还没选完全部12台设备呢，别着急");
+        }
       });
     $('#fama, #tidy-button').show();
     TweenLite.to(box, 0.5, {css: {top: -120, left: 60}});
