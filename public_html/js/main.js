@@ -36,7 +36,7 @@ $(function () {
   }
   function tidyNextCard(card) {
     var index = cards.indexOf(card),
-        offset = viewport.height - 800 >> 1;
+        offset = viewport.height - 600 >> 3;
     if (!card.parent().is(favcards)) {
       var obj = {
         rotation: 0,
@@ -71,15 +71,16 @@ $(function () {
     $('#tidy-button a').removeClass('disabled');
   }
   function addCardToFav(card) {
-    if (favcards.children().length == 12) {
-      $('#fav-cards').popover('show');
+    if (favcards.children().length >= 12) {
+      favcards.popover('show');
       setTimeout(function () {
-        $('#fav-cards').popover('hide');
+        favcards.popover('hide');
       }, 3000);
+      return;
     }
     card
       .removeClass('card-ready')
-      .appendTo($('#fav-cards'))
+      .appendTo(favcards)
       .css({
         left: (favcards.children().length - 1) * 70,
         top: 24,
@@ -186,7 +187,7 @@ $(function () {
         $('#device-detail')
           .data('card', card)
           .find('h3').html(card.attr('title'))
-          .end().find('.modal-body').html($(this).children().first().clone())
+          .end().find('.pic').html($(this).children().first().clone())
           .end().find('.btn-success').toggle(!fromFav)
           .end().find('.btn-danger').toggle(fromFav);
       })

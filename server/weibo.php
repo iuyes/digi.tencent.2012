@@ -10,7 +10,7 @@
 	$image_arr = array();
   $price = 0;
 	foreach ($select as $value) {
-    $image_arr[] = imagecreatefromjpeg("./template/card$value.jpg");
+    $image_arr[] = imagecreatefromjpeg("./template/cards/card$value.jpg");
     $price += $config[$value]['price'];
   }
   

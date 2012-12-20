@@ -15,19 +15,25 @@ session_start();
 header('Content-Type: text/html; charset=utf-8');
 
 if ($_SESSION['t_access_token'] || ($_SESSION['t_openid'] && $_SESSION['t_openkey'])) { //用户已授权
-  $url = 'http://digi2012.sinapp.com/weibo.php?select=' . $_REQUEST['select'];
-
+  
+  // 获取昵称
+  $info = Tencent::api('user/info', array(), 'POST');
+  $info = json_decode($info);
+  $nick = $info['nick'] || $info['name'];
+  $select = $_REQUEST['select'];
+  $url = "http://digi2012.sinapp.com/weibo.php?select=$select&username=$nick";
+  
   /**
    * 发表图片微博
    * 如果图片地址为网络上的一个可用链接
    * 则使用add_pic_url接口
    * */
   $params = array(
-      'content' => '#2012消费电子最佳选择#',
-      'pic_url' => $url
+    'content' => '#2012消费电子最佳选择#',
+    'pic_url' => $url
   );
   $r = Tencent::api('t/add_pic_url', $params, 'POST');
-  echo $r;
+  header('Location: http://digi2012.sinaapp.com/');
 } else {//未授权
   $callback = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];//回调url
   if ($_GET['code']) {//已获得code
