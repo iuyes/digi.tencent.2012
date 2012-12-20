@@ -35,35 +35,37 @@ $(function () {
     }
   }
   function tidyNextCard(card) {
-    var index = cards.indexOf(card);
-    if ($.contains($('#fav-cards')[0], card)) {
-      return;
+    var index = cards.indexOf(card),
+        offset = viewport.height - 800 >> 1;
+    if (!card.parent().is(favcards)) {
+      var obj = {
+        rotation: 0,
+      };
+      if (index < 2) {
+        obj.scale = 1.3;
+        obj.left = 365 + index * 156;
+        obj.top = 240 + offset;
+      } else if ((index - 2) % 13 < 2) {
+        obj.left = 73 + ((index - 2) % 13 + (index / 13 >> 0) * 2) * 102 + (index / 13 > 2 ? 26 : 0);
+        obj.top = 400 + offset * 2;
+      } else {
+        obj.left = (index - 4 - ((index - 2) / 13 >> 0) * 2) % 11 * 74 + 73;
+        obj.top = ((index - 4 - ((index - 2) / 13 >> 0) * 2) / 11 >> 0) * (40 + offset / 2) + 540 + offset * 3;
+      }
+      var animation = {
+        css: obj
+      };
+      $('#cards').append(card);
+      TweenLite.to(card, 0.2, animation);
     }
-    var obj = {
-      rotation: 0,
-    };
-    if (index < 2) {
-      obj.scale = 1.3;
-      obj.left = 365 + index * 156;
-      obj.top = 240;
-    } else if ((index - 2) % 13 < 2) {
-      obj.left = 73 + ((index - 2) % 13 + (index / 13 >> 0) * 2) * 102 + (index / 13 > 2 ? 26 : 0);
-      obj.top = 400;
-    } else {
-      obj.left = (index - 4 - ((index - 2) / 13 >> 0) * 2) % 11 * 74 + 73;
-      obj.top = ((index - 4 - ((index - 2) / 13 >> 0) * 2) / 11 >> 0) * 40 + 540;
-    }
-    var animation = {
-      css: obj
-    };
+  
     if (index < CARDS_NUM - 1) {
-      animation.onComplete = tidyNextCard;
-      animation.onCompleteParams = [cards[index + 1]];
+      setTimeout(function () {
+        tidyNextCard(cards[index + 1]);
+      }, 60);
     } else {
-      animation.onComplete = tidyOver();
+      setTimeout(tidyOver, 200);
     }
-    $('#cards').append(card);
-    TweenLite.to(card, 0.2, animation);
   }
   function tidyOver() {
     $('#tidy-button a').removeClass('disabled');
@@ -169,6 +171,11 @@ $(function () {
       
         if (ui.helper.parent().is(favcards)) {
           removeCardFromFav(ui.helper);
+          return;
+        }
+      
+        if (ui.helper.parent().is('#cards')) {
+          $('#cards').append(ui.helper);
         }
       }
     });
@@ -203,19 +210,20 @@ $(function () {
         tidyNextCard(cards[0]);
       })
       .on('click', '.share-button', function (event) {
-        if (favcards.children().length == 12) {
+        if (favcards.children().length > 0) {
           var select = '';
           favcards.children().each(function (i) {
             select += $(this).find('img').attr('src').match(/card(\d{1,2})\.jpg/)[1] + '_';
           });
           this.href = this.href.substr(0, this.href.indexOf('?')) + '?select=' + select.slice(0, -1);
         } else {
-          alert("您还没选完全部12台设备呢，别着急");
+          alert("您还没选设备呢，这么多选择，一定有你喜欢的。");
         }
       });
     $('#fama, #tidy-button').show();
+    TweenLite.to($('#tidy-button'), 0.2, {css: {z: 2}});
     TweenLite.to(box, 0.5, {css: {top: -120, left: 60}});
-    TweenLite.to($('#title'), 0.5, {css: {top: 20}, ease: Cubic.easeOut});
+    TweenLite.to($('#title'), 0.5, {css: {top: 20, z: 2}, ease: Cubic.easeOut});
   }
   
   // 动画由此开始
@@ -245,6 +253,7 @@ function createViewport(w, h) {
   viewport.height = (h < 1040 ? (h > 800 ? h : 800) : 1040) - 200;
   viewport.cX = viewport.width >> 1;
   viewport.cY = (viewport.height - 200 >> 1) + 180;
+  console.log(viewport.height);
   return viewport;
 }
 $.fn.hitTestObject = function(obj){

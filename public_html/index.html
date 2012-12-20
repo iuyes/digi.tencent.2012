@@ -15,7 +15,7 @@
       
     </ul>
     <div id="fav">
-      <ul id="fav-cards" data-title="只能选择8张扑克哦" data-content="正所谓“舍得舍得，大舍大得，小舍小得，不舍不得”，大侠还请取舍一番吧。" data-placement="top" data-trigger="manual">
+      <ul id="fav-cards" data-title="只能选择12张扑克哦" data-content="正所谓“舍得舍得，大舍大得，小舍小得，不舍不得”，大侠还请取舍一番吧。" data-placement="top" data-trigger="manual">
         
       </ul>
       <div id="counter">
@@ -68,7 +68,7 @@
         <div class="modal-body">
           <script>
             comment_para_site = "digi";
-            comment_para_id = 33629848;
+            comment_para_id = 34786884;
             comment_para_is_group = 1;
             comment_para_sum = 10;
             comment_para_mode = "all";
@@ -111,6 +111,20 @@
           <script>(function(){shareQQ({WB:false});})();</script>
         </div>
       </div>
+      <div class="modal fade hide" id="bad-browser">
+        <div class="modal-header">
+          <button class="close" type="button" data-dismiss="modal">&times;</button>
+          <h3>您的浏览器太低端了！</h3>
+        </div>
+        <div class="modal-body">
+          <p>本专题大量使用了先进的的<span class="text-error">HTML5</span>技术，因为我们的策划和执行团队相待给您最卓越的体验。</p>
+          <p>然而很遗憾，您的破浏览器不支持。为了您的体验和互联网的未来，我们建议您更换或升级浏览器。</p>
+        </div>
+        <div class="modal-footer">
+          <a href="https://www.google.com/chrome" class="btn btn-success" target="_blank"><i class="icon-download icon-white"></i> 下载最新最先进的Chrome浏览器</a>
+          <a href="http://digi.tech.qq.com/zt2012/bestchoice12/index.htm" class="btn">凑合看看普通专题</a>
+        </div>
+      </div>
     </div>
 
     <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js"></script>
@@ -138,5 +152,13 @@
       g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
       s.parentNode.insertBefore(g,s)}(document,'script'));
     </script>
+    <!--[if lt IE 9]>
+    <script>
+      $('#bad-broswer').modal('show');
+      setTimeout(function () {
+        location.href = 'http://digi.tech.qq.com/zt2012/bestchoice12/index.htm';
+      }, 3000);
+    </script>
+    <![endif]-->
   </body>
 </html>

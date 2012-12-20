@@ -23,11 +23,12 @@
 	}
   
   // 生成姓名文字
-	$font_file = SAE_Font_Sun;
+	$font_file = SAE_Font_Hei;
 	$font_color = imagecolorallocate($image, 255, 255, 255);
 	imagettftext($image, 12, 0, 120, 90, $font_color, $font_file, $username);
   
   // 生成总价格
+  
   
   header("Content-Type: image/jpeg");
   echo $image;

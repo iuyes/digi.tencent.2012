@@ -1,7 +1,7 @@
 <?php
 //填写自己的appid
-$client_id = '100678265';
+$client_id = '801291968';
 //填写自己的appkey
-$client_secret = '2ca7ead5064b23fb6f100b4d2c9fe1e8';
+$client_secret = 'eaad8a74dffb372044bb447a9646ce08';
 //调试模式
 $debug = false;
