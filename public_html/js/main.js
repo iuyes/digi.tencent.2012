@@ -34,7 +34,7 @@ $(function () {
       setTimeout(init, 500);
     }
   }
-  function tidyNextCard(card) {
+  function tidyNextCard(card, single) {
     var index = cards.indexOf(card),
         offset = viewport.height - 600 >> 3;
     if (!card.parent().is(favcards)) {
@@ -57,6 +57,10 @@ $(function () {
       };
       $('#cards').append(card);
       TweenLite.to(card, 0.2, animation);
+    }
+  
+    if (single) {
+      return;
     }
   
     if (index < CARDS_NUM - 1) {
@@ -102,25 +106,16 @@ $(function () {
   }
   function removeCardFromFav(card, hasAnimation) {
     var offset = favcards.offset();
-    card.css({
-      left: '+=30',
-      top: '+=' + offset.top,
-    });
     $('#cards').append(card);
-    if (hasAnimation) {
-      var radix = Math.random() / 2,
-          angle = Math.random() * Math.PI * 2;
-      TweenLite.to(card, 0.5, {
-        left: viewport.width * Math.cos(angle) * radix + viewport.width / 2,
-        top: viewport.height * Math.sin(angle) * radix + viewport.cY,
-        rotation: Math.random() * 90 - 45, 
-      });
-    }
+    card.css('top', '+=' + offset.top);
     for (var i =0; i < CARDS_NUM; i++) {
       if (card.is(cards[i])) {
         money -= DEVICES[i].price;
         break;
       }
+    }
+    if (hasAnimation) {
+      tidyNextCard(cards[i], true);
     }
     displayNumbers(money);
   }
@@ -141,6 +136,7 @@ $(function () {
       snap: '#fav-cards',
       snapMode: 'inter',
       drag: function (event, ui) {
+        $('.active').removeClass('active');
         if (ui.helper.hitTestObject(garbage)) {
           garbage.addClass('active');
           return;
@@ -149,7 +145,6 @@ $(function () {
           favcards.addClass('active');
           return;
         }
-        $('.active').removeClass('active');
       },
       start: function (event, ui) {
         ui.helper.addClass('top-card');

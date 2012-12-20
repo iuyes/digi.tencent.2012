@@ -2,6 +2,4 @@ nbproject/
 public_html/doc/
 assets
 deploy
-server/.svn
-server/template/.svn
-server/template/cards
+server

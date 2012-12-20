@@ -111,14 +111,10 @@ h1, h2, h3 {
 }
 
 #fav {
-  position: fixed;
-  bottom: 0;
-  left:50%;
-  margin-left: -490px;
-  z-index:10;
-  
   width: 980px;
-  height:175px;
+  height:180px;
+  margin:0 auto;
+  position: relative;
   
   background:url(../images/bg2.jpg);
 }
@@ -305,7 +301,7 @@ h1, h2, h3 {
 #cards {
   width:980px;
   height: 800px;
-  margin:0 auto 180px;
+  margin:0 auto;
   position:relative;
   background:url(../images/tencent.png) no-repeat center 125px, url(../images/bg1.jpg) no-repeat center bottom;
 }
