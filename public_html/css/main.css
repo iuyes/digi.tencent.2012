@@ -113,7 +113,7 @@ h1, h2, h3 {
 #fav {
   width: 980px;
   height:180px;
-  margin:0 auto;
+  margin:40px auto 0;
   position: relative;
   
   background:url(../images/bg2.jpg);
@@ -387,7 +387,11 @@ h1, h2, h3 {
   -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 2, 1);
 }
 
-
+#qrcode {
+  position:fixed;
+  top:50px;
+  right:50px;
+}
 
 
 /* ==========================================================================

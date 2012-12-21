@@ -249,7 +249,6 @@ function createViewport(w, h) {
   viewport.height = (h < 1040 ? (h > 800 ? h : 800) : 1040) - 200;
   viewport.cX = viewport.width >> 1;
   viewport.cY = (viewport.height - 200 >> 1) + 180;
-  console.log(viewport.height);
   return viewport;
 }
 $.fn.hitTestObject = function(obj){
