@@ -7,7 +7,10 @@ $(function () {
     var container = $('#cards'),
         index = container.children().length - 1,
         card = $(cardTemplate).appendTo(container);
-    card.attr('title', DEVICES[index].name)
+    card.attr({
+      title: DEVICES[index].name,
+      price: DEVICES[index].price,
+      })
       .find('img').attr('src', 'images/cards/card' + index + '.jpg');
     return card;
   }
@@ -96,12 +99,6 @@ $(function () {
       }
     });
     favcards.removeClass('active');
-    for (var i =0; i < CARDS_NUM; i++) {
-      if (card.is(cards[i])) {
-        money += DEVICES[i].price;
-        break;
-      }
-    }
     displayNumbers(money);
   }
   function removeCardFromFav(card, hasAnimation) {
@@ -110,16 +107,20 @@ $(function () {
     card.css('top', '+=' + offset.top);
     for (var i =0; i < CARDS_NUM; i++) {
       if (card.is(cards[i])) {
-        money -= DEVICES[i].price;
+        card = cards[i];
         break;
       }
     }
     if (hasAnimation) {
-      tidyNextCard(cards[i], true);
+      tidyNextCard(card, true);
     }
-    displayNumbers(money);
+    displayNumbers();
   }
-  function displayNumbers(number) {
+  function displayNumbers() {
+    var number = 0;
+    favcards.children().each(function (i) {
+      number += $(this).attr('price');
+    });
     var ul = $('#counter ul');
     ul.empty();
     if (number == 0) {
